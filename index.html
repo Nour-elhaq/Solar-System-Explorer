@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive 3D Solar System Explorer — explore all 8 planets with orbital animations, detailed info, and camera controls.">
+    <title>Solar System Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <canvas id="solar-canvas"></canvas>
+
+    <header id="app-header">
+        <div class="header-left">
+            <h1 id="app-title">
+                <span class="title-icon">🌌</span>
+                Solar System Explorer
+            </h1>
+        </div>
+        <nav id="planet-nav">
+            <button class="planet-btn" data-planet="sun" style="--planet-color:#FDB813">☀ Sun</button>
+            <button class="planet-btn" data-planet="mercury" style="--planet-color:#B5B5B5">Mercury</button>
+            <button class="planet-btn" data-planet="venus" style="--planet-color:#E8CDA0">Venus</button>
+            <button class="planet-btn" data-planet="earth" style="--planet-color:#4DA6FF">Earth</button>
+            <button class="planet-btn" data-planet="mars" style="--planet-color:#E27B58">Mars</button>
+            <button class="planet-btn" data-planet="jupiter" style="--planet-color:#C88B3A">Jupiter</button>
+            <button class="planet-btn" data-planet="saturn" style="--planet-color:#E8D191">Saturn</button>
+            <button class="planet-btn" data-planet="uranus" style="--planet-color:#73D5E8">Uranus</button>
+            <button class="planet-btn" data-planet="neptune" style="--planet-color:#5B7FFF">Neptune</button>
+        </nav>
+    </header>
+
+    <aside id="info-panel" class="panel-hidden">
+        <button id="panel-close" aria-label="Close">✕</button>
+        <div id="panel-content">
+            <div id="panel-header">
+                <div id="panel-icon" class="planet-preview"></div>
+                <h2 id="panel-name"></h2>
+                <span id="panel-type" class="panel-type-badge"></span>
+            </div>
+            <p id="panel-description"></p>
+            <div id="panel-facts">
+                <h3>Quick Facts</h3>
+                <div id="facts-grid"></div>
+            </div>
+            <div id="panel-fun-fact">
+                <h3>Did You Know?</h3>
+                <p id="fun-fact-text"></p>
+            </div>
+        </div>
+    </aside>
+
+    <div id="controls-bar">
+        <div class="control-group">
+            <button id="btn-pause" class="ctrl-btn" title="Pause/Resume">
+                <svg id="icon-pause" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                <svg id="icon-play" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" style="display:none"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+        </div>
+        <div class="control-group">
+            <label class="ctrl-label">Speed</label>
+            <input type="range" id="speed-slider" min="0" max="500" value="100" class="ctrl-slider">
+            <span id="speed-value" class="ctrl-value">1.0x</span>
+        </div>
+        <div class="control-group">
+            <label class="ctrl-label">Zoom</label>
+            <input type="range" id="zoom-slider" min="20" max="300" value="80" class="ctrl-slider">
+        </div>
+        <div class="control-group">
+            <label class="ctrl-label">Orbits</label>
+            <button id="btn-orbits" class="ctrl-btn ctrl-toggle active" title="Toggle orbit lines">◎</button>
+        </div>
+        <div class="control-group">
+            <label class="ctrl-label">Labels</label>
+            <button id="btn-labels" class="ctrl-btn ctrl-toggle active" title="Toggle labels">Aa</button>
+        </div>
+    </div>
+
+    <div id="tooltip" class="tooltip-hidden"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="planets.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
